@@ -1,19 +1,50 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-    <link rel="stylesheet" href="estilos.css"
-       <title>Barrio la Estrada</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa La Estrada - Bogotá</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.min.js"></script>
+    <script src="https://unpkg.com/shapefile"></script>
+
+    <link rel="stylesheet" href="estilos.css" />
+    <style>
+        #map {
+            height: 70vh;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div id="map"></div>
 
-    
+    <button class="boton" id="Arboles">Árboles</button>
+    <button class="boton" id="Distancias">Distancias</button>
+    <button class="boton" id="Homicidios">Homicidios</button>
+
+    <script>
+        var map = L.map('map').setView([4.67981, -74.09238], 15);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Coordenadas corregidas del polígono que encierra La Estrada sin relleno
+        var laEstradaCoords = [
+            [4.683691289615168, -74.09163279050102],
+            [4.680633082435396, -74.08899349680935],
+            [4.672099972179597, -74.09506601806741],
+            [4.67438831019194, -74.09817738054946],
+            [4.683691289615168, -74.09163279050102] // Cerrar el polígono
+        ];
+
+        var laEstradaPolygon = L.polygon(laEstradaCoords, { color: 'red', fillOpacity: 0 }).addTo(map);
+        laEstradaPolygon.bindPopup("Barrio La Estrada");
+    </script>
 </body>
-    <script src="programa.js"></script>
+<script src="programa.js"></script>
+
 </html>
