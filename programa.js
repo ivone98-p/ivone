@@ -35,3 +35,4 @@ function cargarArboles(url) {
 document.getElementById("Arboles").addEventListener("click", function() {
     cargarArboles("http://localhost:8000/arbolado_urbano.geojson"); // Servir desde un servidor local
 });
+555
